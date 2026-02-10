@@ -1,0 +1,7 @@
+package prestamos;
+
+public class UsuarioSancionadoException extends Exception
+{
+    public UsuarioSancionadoException(String mensaje)
+    {}
+}
