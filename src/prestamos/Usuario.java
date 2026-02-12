@@ -49,5 +49,15 @@ public class Usuario {
         return sancionado;
     }
 
-
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", numeroSocio='" + numeroSocio + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", sancionado=" + sancionado +
+                ", fechaFinSancion=" + fechaFinSancion +
+                '}';
     }
+}
