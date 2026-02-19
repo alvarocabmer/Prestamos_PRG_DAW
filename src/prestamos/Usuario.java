@@ -60,4 +60,9 @@ public class Usuario {
                 ", fechaFinSancion=" + fechaFinSancion +
                 '}';
     }
+
+    public String getNumeroSocio() {
+        return numeroSocio;
+    }
+    public String getNombre() { return nombre; }
 }

@@ -31,5 +31,42 @@ public class Prestamo {
 
         if (fechaDevolucionPrevista.isBefore(fechaPrestamo))
             throw new PrestamoInvalidoException("La devolución prevista no puede ser antes del préstamo.");
+        this.codigoLibro = codigoLibro.trim();
+        this.socio = socio;
+        this.tituloLibro = tituloLibro.trim();
+        this.fechaPrestamo = fechaPrestamo;
+
+        this.fechaDevolucionPrevista = fechaPrestamo.plusDays(14);
+        this.fechaDevolucionReal = null;
+    }
+    public boolean estaDevuelto() {
+        return fechaDevolucionReal != null;
+    }
+    public void devolver(LocalDate fechaDevolucionReal) throws PrestamoInvalidoException {
+        if (fechaDevolucionReal == null) {
+            throw new PrestamoInvalidoException("Fecha de devolución real inválida: no puede ser null.");
+        }
+        if (fechaDevolucionReal.isBefore(fechaPrestamo)) {
+            throw new PrestamoInvalidoException("Fecha de devolución real inválida: no puede ser anterior al préstamo.");
+        }
+        if (fechaDevolucionReal.isAfter(LocalDate.now())) {
+            throw new PrestamoInvalidoException("Fecha de devolución real inválida: no puede ser posterior a hoy.");
+        }
+        if (this.fechaDevolucionReal != null) {
+            throw new PrestamoInvalidoException("El préstamo ya está devuelto.");
+        }
+        this.fechaDevolucionReal = fechaDevolucionReal;
+    }
+    @Override
+    public String toString() {
+        return "Prestamo{" +
+                "codigoLibro='" + codigoLibro + '\'' +
+                ", tituloLibro='" + tituloLibro + '\'' +
+                ", socio=" + socio.getNumeroSocio() + " (" + socio.getNombre() + ")" +
+                ", fechaPrestamo=" + fechaPrestamo +
+                ", fechaDevolucionPrevista=" + fechaDevolucionPrevista +
+                ", fechaDevolucionReal=" + fechaDevolucionReal +
+                '}';
     }
 }
+
