@@ -1,6 +1,7 @@
 package prestamos;
 
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 public class Prestamo {
     private String codigoLibro;
@@ -57,6 +58,20 @@ public class Prestamo {
         }
         this.fechaDevolucionReal = fechaDevolucionReal;
     }
+    public String getCodigoLibro() {
+        return codigoLibro;
+    }
+
+    public Usuario getSocio() {
+        return socio;
+    }
+
+    public int calcularDiasRetraso() {
+        LocalDate ref = (fechaDevolucionReal != null) ? fechaDevolucionReal : LocalDate.now();
+        long dias = ChronoUnit.DAYS.between(fechaDevolucionPrevista, ref);
+        return (int) Math.max(0, dias);
+    }
+
     @Override
     public String toString() {
         return "Prestamo{" +

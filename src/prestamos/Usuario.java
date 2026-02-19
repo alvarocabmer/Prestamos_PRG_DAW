@@ -37,7 +37,7 @@ public class Usuario {
         this.sancionado = false;
         this.fechaFinSancion = null;
     }
-    public void sancionar(int dias){
+    public void sancionar(int dias, LocalDate fechaDevolucion){
         this.sancionado = true;
         this.fechaRegistro = LocalDate.now().plusDays(dias);
     }
@@ -65,4 +65,12 @@ public class Usuario {
         return numeroSocio;
     }
     public String getNombre() { return nombre; }
+    public LocalDate getFechaFinSancion() {
+        return fechaFinSancion;
+    }
+
+    public void levantarSancion() {
+        sancionado = false;
+        fechaFinSancion = null;
+    }
 }
